@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="">
+        <style>
+                img{
+                        border: 10px solid red;
+                        width: 140px;
+                        height: 230px;
+                }
+        </style>
+</head>
+<body>
+                <div style="display: flex; justify-content: space-around;">
+                        <a href="InHinhTamGiac.php?choose=1"><img src="img\Triangle1.png"></a>
+                        <a href="InHinhTamGiac.php?choose=2"><img src="img\Triangle2.png" alt=""></a>
+                        <a href="InHinhTamGiac.php?choose=3"><img src="img\Triangle3.png" alt=""></a>
+                </div>
+
+                $choose = $_GET["choose"];
+                echo $choose
+</body>
+</html>
