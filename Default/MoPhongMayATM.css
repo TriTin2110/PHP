@@ -1,0 +1,37 @@
+.container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+input[type=submit]{
+        text-decoration: none;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 5px;
+        width: 90px;
+}
+
+#withdrawal input[type=text] {
+        width: 300px;
+}
+
+table {
+        margin-top: 20px;
+        text-align: center;
+        width: 450px;
+        border-spacing: 20px;
+}
+
+tr {
+        width: 400px;
+        margin-top: 30px;
+}
+.totalMoney div
+{
+        text-align: right;
+}
+
+h1{
+        color: red;
+}

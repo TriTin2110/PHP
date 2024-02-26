@@ -1,0 +1,17 @@
+table {
+        border-collapse: collapse;
+}
+
+.evenRow {
+        background-color: rgb(135, 201, 42)
+}
+
+.oddRow {
+        background-color: white
+}
+
+th,
+tr,
+td {
+        border: 1px solid;
+}

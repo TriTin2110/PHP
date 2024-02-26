@@ -1,10 +1,9 @@
 <?php
 $file = $_FILES['ffile'];
-$size = $_REQUEST['size'];
+$size = $_REQUEST['sizeImg'];
 if (isset($file)) {
         $des = 'img/' . $file['name'];
-        if (move_uploaded_file($file['tmp_name'], $des))        
-                echo 'Upload thành công!';
+        move_uploaded_file($file['tmp_name'], $des);
 }
 ?>
 <!DOCTYPE html>
@@ -16,8 +15,9 @@ if (isset($file)) {
         <title>Document</title>
 </head>
 
+
 <body>
-        <img src="<?php echo $des ?>" width="<?php echo $size ?>" height="<?php echo $size ?>">
+        <img src="<?php echo $des ?>" width=<?php echo $size; ?> height=<?php echo $size ?> alt="NULL">
 </body>
 
 </html>

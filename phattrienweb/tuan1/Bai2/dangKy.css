@@ -1,0 +1,60 @@
+#header {
+        background-color: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+}
+
+
+#footer {
+        background-color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+}
+
+
+#content {
+        display: flex;
+        flex-direction: row;
+}
+
+#leftSide {
+        width: 20%;
+        border-right: 3px solid black;
+}
+
+h4 {
+        text-align: center;
+}
+
+#menu-items {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+}
+
+a {
+        margin-top: 10px;
+}
+
+#rigthSide {
+        width: 110%;
+}
+
+#rigthSide div div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+}
+
+h3 {
+        color: red;
+}
+
+label {
+        font-weight: bold;
+}
