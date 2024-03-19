@@ -1,0 +1,18 @@
+form
+{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+}
+
+table
+{
+        height: 300px;
+}
+
+tr
+{
+      text-align: center; 
+      margin-bottom: 20px;  
+}
