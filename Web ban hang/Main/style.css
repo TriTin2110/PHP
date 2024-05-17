@@ -106,3 +106,18 @@ input
         width: 100%;
         background-color: #D9D9D9;
 }
+#searchingPanel
+{
+        width: 16.7%;
+        background-color: #020062;
+        display: flex;
+        justify-content: center;
+}
+#searchTextField
+{
+        font-size: 15px;
+        width: 60%;  
+}
+input::placeholder{
+        font-size: 13px;
+}

@@ -32,6 +32,17 @@ class Controller
                 else
                         return $result;
         }
-}
+
+        function getProductById($nameOfProduct) {
+                $p = new Connnect();
+                $str = "select * from san_pham where ten_san_pham like '%" . $nameOfProduct . "%'";
+                $con = $p->getConnection();
+                mysqli_set_charset($con, 'utf8');
+                $result = $con->query($str);
+                if (!$con)
+                        return -1;
+                return $result;
+        }
+}       
 
 ?>

@@ -5,49 +5,61 @@ include ('controller/Controller.php');
 error_reporting(0);
 $p = new Controller();
 //Lấy dữ liệu từ kết quả trả về của phương thức getAllData() bên class Controller
+//Lúc đầu cho $homeChosen = 'chosen'
 $homeChosen = 'chosen';
-$kindOfProduct;
-if($_REQUEST['b'] == 'Trang chủ' || !isset($_REQUEST['b']) )
-{
-$kindOfProduct = 'TrangChu';
-} else {
-        $homeChosen = '';
-        switch ($_REQUEST['b']) {
-                case 'Điện thoại':
-                        $kindOfProduct = 'DT1';
-                        $phoneChosen = 'chosen';
-                        break;
-                case 'Gia dụng':
-                        $kindOfProduct = 'GD1';
-                        $appliancesChosen = 'chosen';
-                        break;
-                case 'Phương tiện':
-                        $kindOfProduct = 'PT1';
-                        $vehicleChosen = 'chosen';
-                        break;
-                case 'Thời trang nam':
-                        $kindOfProduct = 'TT1';
-                        $menClothesChosen = 'chosen';
-                        break;
-                case 'Thời trang nữ':
-                        $kindOfProduct = 'TT2';
-                        $womenClothesChosen = 'chosen';
-                        break;
+$searchProduct = $_REQUEST['search'];
+if ($searchProduct != '') {
+        $result = $p->getProductById($searchProduct);
+        if ($result->num_rows > 0) {
+                getData($result);
         }
 }
+else {
+        //Khởi tạo biến $kindOfProduct
+        $kindOfProduct;
+        if ($_REQUEST['b'] == 'Trang chủ' || !isset ($_REQUEST['b'])) {
+                $kindOfProduct = 'TrangChu';
+        } else {
+                //Nếu mục người dùng chọn không phải là trang chủ thì lúc này $homeChosen sẽ bang ''
+                $homeChosen = '';
+                switch ($_REQUEST['b']) {
+                        case 'Điện thoại':
+                                $kindOfProduct = 'DT1';
+                                $phoneChosen = 'chosen';
+                                break;
+                        case 'Gia dụng':
+                                $kindOfProduct = 'GD1';
+                                $appliancesChosen = 'chosen';
+                                break;
+                        case 'Phương tiện':
+                                $kindOfProduct = 'PT1';
+                                $vehicleChosen = 'chosen';
+                                break;
+                        case 'Thời trang nam':
+                                $kindOfProduct = 'TT1';
+                                $menClothesChosen = 'chosen';
+                                break;
+                        case 'Thời trang nữ':
+                                $kindOfProduct = 'TT2';
+                                $womenClothesChosen = 'chosen';
+                                break;
+                }
+        }
 
-if ($kindOfProduct == 'TrangChu' || !isset ($_REQUEST['a']) && !isset ($_REQUEST['b'])) {
-        $result = $p->getAllData();
-        getDataByKind($result);
-        // $_SESSION['firtTime'] = false;
-} else {
+        if ($kindOfProduct == 'TrangChu' || !isset ($_REQUEST['a']) && !isset ($_REQUEST['b'])) {
+                $result = $p->getAllData();
+                getData($result);
+        } else {
 
-        $result = $p->getByKindOfProduct($kindOfProduct);
-        getDataByKind($result);
+                $result = $p->getByKindOfProduct($kindOfProduct);
+                getData($result);
+        }       
 }
 
 
-function getDataByKind($result)
+
+
+function getData($result)
 {
 
         if ($result == -1)
@@ -75,31 +87,49 @@ function getDataByKind($result)
                         <h1>Web bán hàng</h1>
                 </div>
                 <form action="" method="get">
+                        <div id="searchingPanel">
+                                                <input type="text" style="height: 30px;" id="searchTextField" name="search" placeholder="Tìm kiếm sản phẩm"
+                                                        style="cursor: text;">
+                                                <input style="font-size: 15px;" type="submit" value="Search">
+                                        </div>
                         <div id="content">
                                 <div id="menuSide">
+                                        
                                         <div id="MenuItem">
-                                                <div id="Home" >
-                                                        <h3><input type="submit" class="<?php echo $homeChosen?>" name="b" value="Trang chủ"></h3>
+
+                                                <div id="Home">
+                                                        <h3><input type="submit" class="<?php echo $homeChosen ?>"
+                                                                        name="b" value="Trang chủ"></h3>
                                                 </div>
 
                                                 <div id="Phone" class="menuPanel">
-                                                        <h3><input type="submit" name="b" class="<?php echo $phoneChosen ?>" value="Điện thoại"></h3>
+                                                        <h3><input type="submit" name="b"
+                                                                        class="<?php echo $phoneChosen ?>"
+                                                                        value="Điện thoại"></h3>
                                                 </div>
 
                                                 <div id="Appliances" class="menuPanel">
-                                                        <h3><input type="submit" name="b" class="<?php echo $appliancesChosen ?>" value="Gia dụng"></h3>
+                                                        <h3><input type="submit" name="b"
+                                                                        class="<?php echo $appliancesChosen ?>"
+                                                                        value="Gia dụng"></h3>
                                                 </div>
 
                                                 <div id="Vehicle " class="menuPanel">
-                                                        <h3><input type="submit" name="b" class="<?php echo $vehicleChosen ?>" value="Phương tiện"></h3>
+                                                        <h3><input type="submit" name="b"
+                                                                        class="<?php echo $vehicleChosen ?>"
+                                                                        value="Phương tiện"></h3>
                                                 </div>
 
                                                 <div id="Men Clothes" class="menuPanel">
-                                                        <h3><input type="submit" name="b" class="<?php echo $menClothesChosen ?>" value="Thời trang nam"></h3>
+                                                        <h3><input type="submit" name="b"
+                                                                        class="<?php echo $menClothesChosen ?>"
+                                                                        value="Thời trang nam"></h3>
                                                 </div>
 
                                                 <div id="Women Clothes" class="menuPanel">
-                                                        <h3><input type="submit" name="b" class="<?php echo $womenClothesChosen ?>" value="Thời trang nữ"></h3>
+                                                        <h3><input type="submit" name="b"
+                                                                        class="<?php echo $womenClothesChosen ?>"
+                                                                        value="Thời trang nữ"></h3>
                                                 </div>
                                         </div>
 
@@ -115,7 +145,7 @@ function getDataByKind($result)
                         //fetch_assoc() duyệt từng dòng từ resultset trả về/
                         //fetch_assoc() sẽ trả về null khi đã duyệt hết tất cả các dòng trong danh sách
                         while ($r = $result->fetch_assoc()) {
-                                echo '<td> <img src="../IMG/' . $r['img_san_pham'] . '" width="200" height="250p"> <br>' . $r['id_san_pham'] . '<br>' . $r['ten_san_pham'] . '</td>';
+                                echo '<td> <img src="IMG/' . $r['img_san_pham'] . '" width="200" height="250p"> <br>' . $r['id_san_pham'] . '<br>' . $r['ten_san_pham'] . '</td>';
                                 $count++;
                                 //Xuống hàng nếu biến $count % 4 == 0
                                 if ($count % 4 == 0)

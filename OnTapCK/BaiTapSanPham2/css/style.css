@@ -1,0 +1,25 @@
+#container
+{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center ;
+}
+
+#leftside
+{
+        width: 20%;
+        height: 100%;
+}
+
+#rightside {
+        width: 80%;
+}
+
+.sanpham
+{
+        border: 1px solid black;
+        float: left;
+        margin: 10px 10px;
+        padding: 10px 5px;
+}
